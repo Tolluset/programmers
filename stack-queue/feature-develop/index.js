@@ -1,15 +1,8 @@
-// k + ax = end
-// p + s * x = 100
-// x = ( 100 - p ) / s
-// x = ceil(( 100 - p ) / s)
-
-/* 
-{
-  0: {
-    prog: 93,
-    speed, 1,
-  }
-}
+/*
+  k + ax = end
+  p + s * x = 100
+  x = ( 100 - p ) / s
+  x = ceil(( 100 - p ) / s)
 */
 
 export default function sol(prog, speed) {
