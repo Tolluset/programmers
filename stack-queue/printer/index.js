@@ -1,9 +1,8 @@
 export default function solution(prior, loc) {
   const priorMap = arrayToMap(prior);
   const mapIterator = priorIterator(priorMap);
-  const answer = findLocInMap(mapIterator, loc);
 
-  return answer;
+  return [...mapIterator].findIndex((v) => v[0] === loc) + 1;
 }
 
 export const arrayToMap = (items) => {
@@ -30,12 +29,4 @@ export const priorIterator = (queue) => {
     }
   }
   return queue;
-};
-
-export const findLocInMap = (map, loc) => {
-  const iter = map[Symbol.iterator]();
-
-  for (let i = 1; i < map.size + 1; i++) {
-    if (iter.next().value[0] === loc) return i;
-  }
 };
