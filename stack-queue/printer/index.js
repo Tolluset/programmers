@@ -1,32 +1,36 @@
 export default function solution(prior, loc) {
-  const priorMap = arrayToMap(prior);
-  const mapIterator = priorIterator(priorMap);
+  const map = arrayToMap(prior);
+  const iter = priorIterator(map);
 
-  return [...mapIterator].findIndex((v) => v[0] === loc) + 1;
+  return findLocInMap(iter, loc);
 }
 
 export const arrayToMap = (items) => {
-  const result = new Map();
-  items.forEach((item, idx) => result.set(idx, item));
-  return result;
+  const res = new Map();
+  items.forEach((item, idx) => res.set(idx, item));
+  return res;
 };
 
-export const priorIterator = (queue) => {
+export const priorIterator = (q) => {
   let cnt = 0;
 
-  while (cnt < queue.size - 1) {
-    const qe = [...queue.entries()];
+  while (cnt < q.size - 1) {
+    const qe = [...q.entries()];
     const qei = qe[cnt][0];
     const qev = qe[cnt][1];
 
     const qes = qe.splice(cnt).some((v) => v[1] > qev);
 
     if (qes) {
-      queue.delete(qei);
-      queue.set(qei, qev);
+      q.delete(qei);
+      q.set(qei, qev);
     } else {
       cnt++;
     }
   }
-  return queue;
+  return q;
+};
+
+export const findLocInMap = (map, loc) => {
+  return [...map].findIndex((v) => v[0] === loc) + 1;
 };
