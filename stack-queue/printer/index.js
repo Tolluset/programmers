@@ -1,16 +1,7 @@
 export default function solution(prior, loc) {
-  let answer = 0;
-
   const priorMap = arrayToMap(prior);
-  const prioredMap = priorIterator(priorMap);
-
-  let i = 0;
-  prioredMap.forEach((v, k) => {
-    i++;
-    if (k === loc) {
-      answer = i;
-    }
-  });
+  const mapIterator = priorIterator(priorMap);
+  const answer = findLocInMap(mapIterator, loc);
 
   return answer;
 }
@@ -39,4 +30,12 @@ export const priorIterator = (queue) => {
     }
   }
   return queue;
+};
+
+export const findLocInMap = (map, loc) => {
+  const iter = map[Symbol.iterator]();
+
+  for (let i = 1; i < map.size + 1; i++) {
+    if (iter.next().value[0] === loc) return i;
+  }
 };
