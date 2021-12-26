@@ -11,7 +11,8 @@ export const arrayToMap = (items) => {
   return res;
 };
 
-export const priorIterator = (q) => {
+export const priorIterator = (queue) => {
+  const q = new Map(queue);
   let cnt = 0;
 
   while (cnt < q.size - 1) {
