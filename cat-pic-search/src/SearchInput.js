@@ -10,7 +10,7 @@ class SearchInput {
     $target.appendChild($searchInput);
 
     $searchInput.addEventListener("keyup", e => {
-      if (e.keyCode === 13) {
+      if (e.code === 'Enter') {
         onSearch(e.target.value);
       }
     });
