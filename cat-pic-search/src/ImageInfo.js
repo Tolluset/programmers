@@ -20,11 +20,9 @@ class ImageInfo {
     render() {
       if (this.data.visible) {
         const { name, url, temperament, origin } = this.data.image;
-        this.$imageInfo.setAttribute("role", "dialog")
-        this.$imageInfo.setAttribute("aria-modal", "true")
   
         this.$imageInfo.innerHTML = `
-          <div class="content-wrapper">
+          <div class="content-wrapper" role="dialog" aria-modal="true">
             <div class="title">
               <span>${name}</span>
               <div class="close">x</div>
