@@ -4,8 +4,8 @@ class DarkModeToggleButton {
   onClick = null;
 
   constructor({ $target }) {
-    const $DarkModeToggleButton = document.createElement("input");
-    const $DarkModeToggleButtonLabel = document.createElement("label");
+    this.$DarkModeToggleButton = document.createElement("input");
+    this.$DarkModeToggleButtonLabel = document.createElement("label");
 
     const isOsDarkMode = window.matchMedia(
       "(prefers-color-scheme: dark)"
@@ -13,27 +13,25 @@ class DarkModeToggleButton {
     const theme = isOsDarkMode ? "dark" : "light";
     document.documentElement.dataset.theme = theme;
 
-    this.$DarkModeToggleButton = $DarkModeToggleButton;
     this.$DarkModeToggleButton.type = "checkbox";
     this.$DarkModeToggleButton.id = "darkModeButton";
 
-    this.$DarkModeToggleButtonLabel = $DarkModeToggleButtonLabel;
     this.$DarkModeToggleButtonLabel.setAttribute("for", "darkModeButton");
     this.$DarkModeToggleButtonLabel.textContent = isOsDarkMode
       ? "Dark Mode"
       : "Light Mode";
-    $DarkModeToggleButtonLabel.className = "DarkModeButtonLabel";
+    this.$DarkModeToggleButtonLabel.className = "DarkModeButtonLabel";
 
-    $target.appendChild($DarkModeToggleButton);
-    $target.appendChild($DarkModeToggleButtonLabel);
+    $target.appendChild(this.$DarkModeToggleButton);
+    $target.appendChild(this.$DarkModeToggleButtonLabel);
 
-    $DarkModeToggleButton.addEventListener("click", () => {
+    this.$DarkModeToggleButton.addEventListener("click", () => {
       const isDarkMode = document.documentElement.dataset.theme === "dark";
       const newTheme = isDarkMode ? "light" : "dark";
       const newModeName = isDarkMode ? "Light Mode" : "Dark Mode";
 
       document.documentElement.setAttribute("data-theme", newTheme);
-      $DarkModeToggleButtonLabel.textContent = newModeName;
+      this.$DarkModeToggleButtonLabel.textContent = newModeName;
     });
   }
 }
