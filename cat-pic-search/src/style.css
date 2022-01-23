@@ -1,0 +1,34 @@
+body {
+    margin: 1rem;
+}
+
+.SearchResult {
+    display: grid;
+    width:fit-content;
+    gap: 1rem 1rem;
+    margin-top: 1rem;
+}
+
+.item img{
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+
+@media (min-width: 769px) {
+    .SearchResult {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .SearchResult {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 576px) {
+    .SearchResult {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
