@@ -2,15 +2,14 @@ const TEMPLATE = '<input type="text">';
 
 class SearchInput {
   constructor({ $target, onSearch }) {
-    const $searchInput = document.createElement("input");
-    this.$searchInput = $searchInput;
+    this.$searchInput = document.createElement("input");
     this.$searchInput.placeholder = "고양이를 검색해보세요.|";
 
-    $searchInput.className = "SearchInput";
-    $target.appendChild($searchInput);
+    this.$searchInput.className = "SearchInput";
+    $target.appendChild(this.$searchInput);
 
-    $searchInput.addEventListener("keyup", e => {
-      if (e.code === 'Enter') {
+    this.$searchInput.addEventListener("keyup", (e) => {
+      if (e.code === "Enter") {
         onSearch(e.target.value);
       }
     });
