@@ -3,10 +3,9 @@ class ImageInfo {
     data = null;
   
     constructor({ $target, data }) {
-      const $imageInfo = document.createElement("div");
-      $imageInfo.className = "ImageInfo";
-      this.$imageInfo = $imageInfo;
-      $target.appendChild($imageInfo);
+      this.$imageInfo = document.createElement("div");
+      this.$imageInfo.className = "ImageInfo";
+      $target.appendChild(this.$imageInfo);
   
       this.data = data;
   
@@ -21,8 +20,8 @@ class ImageInfo {
     render() {
       if (this.data.visible) {
         const { name, url, temperament, origin } = this.data.image;
-        $imageInfo.setAttribute("role", "dialog")
-        $imageInfo.setAttribute("aria-modal", "true")
+        this.$imageInfo.setAttribute("role", "dialog")
+        this.$imageInfo.setAttribute("aria-modal", "true")
   
         this.$imageInfo.innerHTML = `
           <div class="content-wrapper">
