@@ -21,6 +21,8 @@ class ImageInfo {
     render() {
       if (this.data.visible) {
         const { name, url, temperament, origin } = this.data.image;
+        $imageInfo.setAttribute("role", "dialog")
+        $imageInfo.setAttribute("aria-modal", "true")
   
         this.$imageInfo.innerHTML = `
           <div class="content-wrapper">
@@ -30,8 +32,8 @@ class ImageInfo {
             </div>
             <img src="${url}" alt="${name}"/>        
             <div class="description">
-              <div>성격: ${temperament}</div>
-              <div>태생: ${origin}</div>
+              <span>성격: ${temperament}</span>
+              <span>태생: ${origin}</span>
             </div>
           </div>`;
         this.$imageInfo.style.display = "block";
