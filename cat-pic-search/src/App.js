@@ -7,7 +7,7 @@ class App {
   constructor($target) {
     this.$target = $target;
 
-    this.darkModeToggleButtojn = new DarkModeToggleButton({
+    this.darkModeToggleButton = new DarkModeToggleButton({
       $target
     });
 
