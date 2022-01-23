@@ -1,11 +1,11 @@
 class DarkModeToggleButton {
-  $DarkModeToggleButton = null;
-  $DarkModeToggleButtonLabel = null;
+  $Checkbox = null;
+  $Label = null;
   onClick = null;
 
   constructor({ $target }) {
-    this.$DarkModeToggleButton = document.createElement("input");
-    this.$DarkModeToggleButtonLabel = document.createElement("label");
+    this.$Checkbox = document.createElement("input");
+    this.$Label = document.createElement("label");
 
     const isOsDarkMode = window.matchMedia(
       "(prefers-color-scheme: dark)"
@@ -13,25 +13,32 @@ class DarkModeToggleButton {
     const theme = isOsDarkMode ? "dark" : "light";
     document.documentElement.dataset.theme = theme;
 
-    this.$DarkModeToggleButton.type = "checkbox";
-    this.$DarkModeToggleButton.id = "darkModeButton";
+    this.$Checkbox.type = "checkbox";
+    this.$Checkbox.id = "darkModeButton";
 
-    this.$DarkModeToggleButtonLabel.setAttribute("for", "darkModeButton");
-    this.$DarkModeToggleButtonLabel.textContent = isOsDarkMode
+    this.$Label.setAttribute("for", "darkModeButton");
+    this.$Label.textContent = isOsDarkMode
       ? "Dark Mode"
       : "Light Mode";
-    this.$DarkModeToggleButtonLabel.className = "DarkModeButtonLabel";
+    this.$Label.className = "DarkModeButtonLabel";
 
-    $target.appendChild(this.$DarkModeToggleButton);
-    $target.appendChild(this.$DarkModeToggleButtonLabel);
+    $target.appendChild(this.$Checkbox);
+    $target.appendChild(this.$Label);
 
-    this.$DarkModeToggleButton.addEventListener("click", () => {
+    this.$Checkbox.addEventListener("click", () => {
       const isDarkMode = document.documentElement.dataset.theme === "dark";
-      const newTheme = isDarkMode ? "light" : "dark";
-      const newModeName = isDarkMode ? "Light Mode" : "Dark Mode";
+      let theme, modeName;
 
-      document.documentElement.setAttribute("data-theme", newTheme);
-      this.$DarkModeToggleButtonLabel.textContent = newModeName;
+      if (isDarkMode) {
+        theme = "light";
+        modeName = "Light Mode";
+      } else {
+        theme = "dark";
+        modeName = "Dark Mode";
+      }
+
+      document.documentElement.setAttribute("data-theme", theme);
+      this.$Label.textContent = modeName;
     });
   }
 }
