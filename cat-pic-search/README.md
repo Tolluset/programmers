@@ -2,7 +2,7 @@
 
 ## 실행방법
 
-```
+```bash
 npm run start
 ```
 
