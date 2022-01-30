@@ -29,14 +29,25 @@ class ImageInfo {
   }
 
   open() {
-    this.$imageInfo.classList.remove("fadeout");
     this.$target.appendChild(this.$imageInfo);
+    console.log(1);
+
+    setTimeout(() => {
+      this.$imageInfo.style.opacity = 1;
+      this.$imageInfo.style.transition = "all 1s";
+    });
+
+    // this.$imageInfo.classList.add("fadein");
+    // this.$imageInfo.classList.remove("fadeout");
   }
 
   close() {
-    this.$imageInfo.classList.add("fadeout");
+    this.$imageInfo.style.opacity = 0;
+    this.$imageInfo.style.transition = "all 1s";
+
+    // this.$imageInfo.classList.add("fadeout");
     this.$imageInfo.addEventListener(
-      "animationend",
+      "transitionend",
       () => {
         this.$target.removeChild(this.$imageInfo);
       },
