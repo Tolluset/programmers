@@ -1,11 +1,12 @@
 class ImageInfo {
+  $target = null;
   $imageInfo = null;
   data = null;
 
   constructor({ $target, data }) {
+    this.$target = $target;
     this.$imageInfo = document.createElement("div");
     this.$imageInfo.className = "ImageInfo";
-    $target.appendChild(this.$imageInfo);
 
     window.addEventListener("keyup", (e) => {
       if (e.code === "Escape") {
@@ -14,7 +15,7 @@ class ImageInfo {
     });
 
     window.addEventListener("click", (e) => {
-      e.target.className === "ImageInfo" ? this.close() : false;
+      e.target.classList.contains("ImageInfo") ? this.close() : false;
     });
 
     this.data = data;
@@ -27,8 +28,20 @@ class ImageInfo {
     this.render();
   }
 
+  open() {
+    this.$imageInfo.classList.remove("fadeout");
+    this.$target.appendChild(this.$imageInfo);
+  }
+
   close() {
-    this.$imageInfo.style.display = "none";
+    this.$imageInfo.classList.add("fadeout");
+    this.$imageInfo.addEventListener(
+      "animationend",
+      () => {
+        this.$target.removeChild(this.$imageInfo);
+      },
+      { once: true }
+    );
   }
 
   render() {
@@ -47,15 +60,14 @@ class ImageInfo {
               <span>태생: ${origin}</span>
             </div>
           </div>`;
-      this.$imageInfo.style.display = "block";
+
+      this.open();
 
       const $close = document.getElementsByClassName("close")[0];
 
       $close.addEventListener("click", () => {
         this.close();
       });
-    } else {
-      this.$imageInfo.style.display = "none";
     }
   }
 }
